@@ -1,0 +1,19 @@
+.menu{
+    width: 100%;
+}
+.menu ul{
+    list-style-type: none ;
+    padding: 0;
+    margin: 0;
+}
+.menu ul li a{
+    padding: 10px 20px;
+    display: block;
+    text-decoration: none;
+    color: wheat;
+
+}
+.menu ul li a:hover{
+    background-color: green;
+}
+
