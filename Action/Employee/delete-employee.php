@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once '../../Config/connect.php';
+require_once '../../Config/connect.php';
 
 // Check if EmpId is provided
 if (isset($_GET['EmpId'])) {

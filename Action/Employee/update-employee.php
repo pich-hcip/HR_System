@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once '../../Config/connect.php';
+require_once '../../Config/connect.php';
 
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
