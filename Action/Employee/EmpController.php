@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $dep_id, $pos_id, $stat_id, $join_date, $address);
 
     if (mysqli_stmt_execute($stmt)) {
-        header("Location: /HR_SYSTEMME/view/Employee/employee.php?success=Employee added successfully");
+        header("Location: /HR_SYSTEM/view/Employee/employee.php?success=Employee added successfully");
         exit;
     } else {
         echo "Error: " . mysqli_error($con);

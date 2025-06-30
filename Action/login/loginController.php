@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $remember = isset($_POST['remember']);
 
     // Query from database
-    $sql = "SELECT * FROM users WHERE username = ?";
+    $sql = "SELECT * FROM user WHERE userName = ?";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -20,9 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = $result->fetch_assoc();
 
         // Match password (plain text comparison)
-        if ($password === $row['password']) {
+        if ($password === $row['Pwd']) {
             $_SESSION['loggedin'] = true;
-            $_SESSION['username'] = $row['username'];
+            $_SESSION['username'] = $row['userName'];
 
             if ($remember) {
                 setcookie('remember', $username, time() + (86400 * 30), "/"); // 30 days
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 setcookie('remember', '', time() - 3600, "/");
             }
 
-            header('Location:/HR_SYSTEMME/index.php'); // Redirect to index page
+            header('Location:/HR_SYSTEM/index.php'); // Redirect to index page
             exit;
         }
     }

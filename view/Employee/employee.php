@@ -47,7 +47,7 @@ $result = mysqli_query($con, $sql);
         <!-- Employees Table -->
         <table class="table table-striped table-hover">
             <thead class="table-primary">
-                <tr>
+                <tr class="text-nowrap">
                     <th>Emp ID</th>
                     <th>Full Name</th>
                     <th>Sex</th>
@@ -66,7 +66,7 @@ $result = mysqli_query($con, $sql);
             <tbody>
                 <?php if ($result && mysqli_num_rows($result) > 0): ?>
                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                        <tr>
+                        <tr class="text-nowrap">
                             <td><?php echo htmlspecialchars($row['EmpId']); ?></td>
                             <td><?php echo htmlspecialchars($row['EmpName']); ?></td>
                             <td><?php echo htmlspecialchars($row['Sex']); ?></td>
