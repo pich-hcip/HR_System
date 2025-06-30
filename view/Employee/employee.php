@@ -108,7 +108,7 @@ $result = mysqli_query($con, $sql);
     <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form method="POST" action="/HR_SYSTEMME/Action/Employee/EmpController.php">
+                <form method="POST" action="/HR_SYSTEM/Action/Employee/EmpController.php">
                     <div class="modal-header bg-primary text-white">
                         <h5 class="modal-title fw-bold" id="addEmployeeModalLabel">Add New Employee</h5>
                         <button type="button" class="btn btn-danger btn-sm btn-close" data-bs-dismiss="modal"></button>
@@ -182,7 +182,7 @@ $result = mysqli_query($con, $sql);
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                 <label class="form-label">Department</label>
+                                 <label class="form-label">Status</label>
                                 <select name="StatId" class="form-control" required>
                                     <option value="">Select Status</option>
                                     <?php
