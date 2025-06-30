@@ -45,7 +45,7 @@ $result = mysqli_query($con, $sql);
 
 <body class="p-4 bg-light">
 
-    <div class="container">
+    <div class="container-fluid">
         <?php if (isset($_SESSION['message'])): ?>
             <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
                 <?= $_SESSION['message'] ?>
@@ -79,7 +79,7 @@ $result = mysqli_query($con, $sql);
                     <th>Join Date</th>
                     <th>Address</th>
                     <th>Actions</th>
-                </tr>
+                </tr>     
             </thead>
             <tbody>
                 <?php if ($result && mysqli_num_rows($result) > 0): ?>
