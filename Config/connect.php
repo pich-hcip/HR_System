@@ -1,5 +1,5 @@
 <?php
-    $con=  new mysqli('localhost','root','','dbhr');
+    $con=  new mysqli('localhost','root','root','dbhr');
     if(!$con)
     {
         die('Connection Failed..!');

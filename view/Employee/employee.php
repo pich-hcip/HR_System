@@ -118,7 +118,7 @@ $result = mysqli_query($con, $sql);
                                     data-stat-id="<?= isset($row['StatId']) ? htmlspecialchars($row['StatId']) : '' ?>"
                                     data-join-date="<?= isset($row['JoinDate']) ? htmlspecialchars($row['JoinDate']) : '' ?>"
                                     data-address="<?= isset($row['Address']) ? htmlspecialchars($row['Address']) : '' ?>">
-                                    Edit
+                                  Edit
                                 </button>
 
                                 <a href="/HR_SYSTEM/Action/Employee/delete-employee.php?action=delete&EmpId=<?= isset($row['EmpId']) ? urlencode($row['EmpId']) : '' ?>"
@@ -427,4 +427,128 @@ $result = mysqli_query($con, $sql);
     </script>
 </body>
 
-</html>
+</html>  <div class="modal fade" id="addPayrollModal" tabindex="-1" aria-labelledby="addPayrollModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form method="POST" action="/HR_SYSTEM/Action/Payroll/add-payroll.php" id="addPayrollForm">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title fw-bold" id="addPayrollModalLabel">
+                            <i class="bi bi-plus-circle"></i> Add New Payroll
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="addEmpId" class="form-label">Employee</label>
+                                <select name="EmpId" id="addEmpId" class="form-select" required>
+                                    <option value="">Select Employee</option>
+                                    <?php
+                                    require_once '../../Config/connect.php';
+                                    $emp_query = "SELECT EmpId, EmpName FROM employee ORDER BY EmpName";
+                                    $emp_result = mysqli_query($con, $emp_query);
+                                    if ($emp_result && mysqli_num_rows($emp_result) > 0) {
+                                        while ($emp = mysqli_fetch_assoc($emp_result)) {
+                                            echo '<option value="' . htmlspecialchars($emp['EmpId']) . '">' . 
+                                                htmlspecialchars($emp['EmpName']) . ' (ID: ' . 
+                                                htmlspecialchars($emp['EmpId']) . ')</option>';
+                                        }
+                                    }
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="addBasicSalary" class="form-label">Basic Salary</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" step="0.01" min="0" name="BasicSalary" id="addBasicSalary" 
+                                        class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="addBonus" class="form-label">Bonus</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" step="0.01" min="0" name="Bonus" id="addBonus" 
+                                        class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Total Salary</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="text" id="addTotalSalary" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Save Payroll
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Payroll Modal -->
+    <div class="modal fade" id="editPayrollModal" tabindex="-1" aria-labelledby="editPayrollModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form method="POST" action="/HR_SYSTEM/Action/Payroll/update-payroll.php" id="editPayrollForm">
+                    <input type="hidden" name="PayId" id="editPayId">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title fw-bold" id="editPayrollModalLabel">
+                            <i class="bi bi-pencil-square"></i> Edit Payroll
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Employee</label>
+                                <input type="text" id="editEmpName" class="form-control" readonly>
+                                <input type="hidden" name="EmpId" id="editEmpId">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="editBasicSalary" class="form-label">Basic Salary</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" step="0.01" min="0" name="BasicSalary" id="editBasicSalary" 
+                                        class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="editBonus" class="form-label">Bonus</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" step="0.01" min="0" name="Bonus" id="editBonus" 
+                                        class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Total Salary</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="text" id="editTotalSalary" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="bi bi-save"></i> Update Payroll
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

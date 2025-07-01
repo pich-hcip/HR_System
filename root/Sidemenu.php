@@ -32,8 +32,8 @@
             </li>
 
             <li>
-                <a href="#Order" data-toggle="collapse" target="content">
-                    <i class=" fa fa-money-bill"></i><span lang="km">Salary</span>
+                <a href="../view/Payroll/payroll.php"  target="content">
+                    <i class=" fa fa-money-bill"></i><span lang="km">Payroll</span>
                 </a>
                
             </li>
